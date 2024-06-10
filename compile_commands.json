@@ -1,9 +1,15 @@
 [
 {
   "directory": "D:/Projects/C++/Raylib-Test/build",
-  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd /FoCMakeFiles\\Raylib.dir\\src\\main.c.obj /FdCMakeFiles\\Raylib.dir\\ /FS -c D:\\Projects\\C++\\Raylib-Test\\src\\main.c",
-  "file": "D:\\Projects\\C++\\Raylib-Test\\src\\main.c",
-  "output": "CMakeFiles\\Raylib.dir\\src\\main.c.obj"
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DGAME_EXPORTS -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -Dgame_EXPORTS -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include /DWIN32 /D_WINDOWS /EHsc -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/um\" -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/shared\" -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/ucrt\" /Zi /Ob0 /Od /RTC1 -std:c++20 -MDd /FoCMakeFiles\\game.dir\\src\\game.cpp.obj /FdCMakeFiles\\game.dir\\ /FS -c D:\\Projects\\C++\\Raylib-Test\\src\\game.cpp",
+  "file": "D:\\Projects\\C++\\Raylib-Test\\src\\game.cpp",
+  "output": "CMakeFiles\\game.dir\\src\\game.cpp.obj"
+},
+{
+  "directory": "D:/Projects/C++/Raylib-Test/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -ID:\\Projects\\C++\\Raylib-Test -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include /DWIN32 /D_WINDOWS /EHsc -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/um\" -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/shared\" -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/ucrt\" /Zi /Ob0 /Od /RTC1 -std:c++20 -MDd /FoCMakeFiles\\Raylib.dir\\src\\main.cpp.obj /FdCMakeFiles\\Raylib.dir\\ /FS -c D:\\Projects\\C++\\Raylib-Test\\src\\main.cpp",
+  "file": "D:\\Projects\\C++\\Raylib-Test\\src\\main.cpp",
+  "output": "CMakeFiles\\Raylib.dir\\src\\main.cpp.obj"
 },
 {
   "directory": "D:/Projects/C++/Raylib-Test/build",

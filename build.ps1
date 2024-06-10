@@ -1,3 +1,5 @@
+echo "Compile Started at:"
+Get-Date -Format "HH:mm:ss"
 dev-shell
 cmake -S . -B ./build/ -GNinja
 set-location ./build/
