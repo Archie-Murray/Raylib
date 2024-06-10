@@ -19,7 +19,7 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
   if (NOT raylib_POPULATED) # Have we downloaded raylib yet?
     set(FETCHCONTENT_QUIET NO)
     FetchContent_Populate(raylib)
-    set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE) # don't build the supplied examples
+    set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE) # don't build the supplied examples
     add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
   endif()
 endif()
@@ -32,7 +32,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
 endif()
 # Our Project
 add_executable(${PROJECT_NAME} ./src/main.cpp)
-target_link_libraries(${PROJECT_NAME} PRIVATE raylib game)
+target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Game dynamic library for hot reloading

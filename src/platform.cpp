@@ -1,7 +1,8 @@
 #include "platform.hpp"
+#include <format>
 #ifdef _WIN32
-GameLib LoadGameLibrary(GameAPI* gameAPI) {
-    GameLib gameLib = (GameLib) LoadLibraryA("game.dll");
+GameLib LoadGameLibrary(GameAPI* gameAPI, int reloadCount) {
+    GameLib gameLib = LoadLibraryA(std::format("game{}.dll", reloadCount).c_str());
     if (!gameLib) {
         // Handle error
         return nullptr;
