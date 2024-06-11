@@ -1,55 +1,55 @@
 [
 {
   "directory": "D:/Projects/C++/Raylib-Test/build",
-  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DGAME_EXPORTS -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -Dgame_EXPORTS -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include /DWIN32 /D_WINDOWS /EHsc -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/um\" -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/shared\" -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/ucrt\" /Zi /Ob0 /Od /RTC1 -std:c++20 -MDd /FoCMakeFiles\\game.dir\\src\\game.cpp.obj /FdCMakeFiles\\game.dir\\ /FS -c D:\\Projects\\C++\\Raylib-Test\\src\\game.cpp",
-  "file": "D:\\Projects\\C++\\Raylib-Test\\src\\game.cpp",
-  "output": "CMakeFiles\\game.dir\\src\\game.cpp.obj"
-},
-{
-  "directory": "D:/Projects/C++/Raylib-Test/build",
   "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -ID:\\Projects\\C++\\Raylib-Test -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include /DWIN32 /D_WINDOWS /EHsc -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/um\" -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/shared\" -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/ucrt\" /Zi /Ob0 /Od /RTC1 -std:c++20 -MDd /FoCMakeFiles\\Raylib.dir\\src\\main.cpp.obj /FdCMakeFiles\\Raylib.dir\\ /FS -c D:\\Projects\\C++\\Raylib-Test\\src\\main.cpp",
   "file": "D:\\Projects\\C++\\Raylib-Test\\src\\main.cpp",
   "output": "CMakeFiles\\Raylib.dir\\src\\main.cpp.obj"
 },
 {
   "directory": "D:/Projects/C++/Raylib-Test/build",
-  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -external:ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include -external:W0 /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd /Fo_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\rcore.c.obj /Fd_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\raylib.pdb /FS -c D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\rcore.c",
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DGAME_EXPORTS -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -Dgame_EXPORTS -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include /DWIN32 /D_WINDOWS /EHsc -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/um\" -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/shared\" -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/ucrt\" /Zi /Ob0 /Od /RTC1 -std:c++20 -MDd /FoCMakeFiles\\game.dir\\src\\game.cpp.obj /FdCMakeFiles\\game.dir\\ /FS -c D:\\Projects\\C++\\Raylib-Test\\src\\game.cpp",
+  "file": "D:\\Projects\\C++\\Raylib-Test\\src\\game.cpp",
+  "output": "CMakeFiles\\game.dir\\src\\game.cpp.obj"
+},
+{
+  "directory": "D:/Projects/C++/Raylib-Test/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo -DBUILD_LIBTYPE_SHARED -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS -Draylib_EXPORTS -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -external:ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include -external:W0 /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd /Fo_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\rcore.c.obj /Fd_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\ /FS -c D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\rcore.c",
   "file": "D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\rcore.c",
   "output": "_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\rcore.c.obj"
 },
 {
   "directory": "D:/Projects/C++/Raylib-Test/build",
-  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -external:ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include -external:W0 /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd /Fo_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\rmodels.c.obj /Fd_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\raylib.pdb /FS -c D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\rmodels.c",
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo -DBUILD_LIBTYPE_SHARED -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS -Draylib_EXPORTS -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -external:ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include -external:W0 /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd /Fo_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\rmodels.c.obj /Fd_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\ /FS -c D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\rmodels.c",
   "file": "D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\rmodels.c",
   "output": "_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\rmodels.c.obj"
 },
 {
   "directory": "D:/Projects/C++/Raylib-Test/build",
-  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -external:ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include -external:W0 /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd /Fo_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\rshapes.c.obj /Fd_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\raylib.pdb /FS -c D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\rshapes.c",
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo -DBUILD_LIBTYPE_SHARED -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS -Draylib_EXPORTS -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -external:ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include -external:W0 /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd /Fo_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\rshapes.c.obj /Fd_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\ /FS -c D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\rshapes.c",
   "file": "D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\rshapes.c",
   "output": "_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\rshapes.c.obj"
 },
 {
   "directory": "D:/Projects/C++/Raylib-Test/build",
-  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -external:ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include -external:W0 /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd /Fo_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\rtext.c.obj /Fd_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\raylib.pdb /FS -c D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\rtext.c",
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo -DBUILD_LIBTYPE_SHARED -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS -Draylib_EXPORTS -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -external:ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include -external:W0 /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd /Fo_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\rtext.c.obj /Fd_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\ /FS -c D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\rtext.c",
   "file": "D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\rtext.c",
   "output": "_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\rtext.c.obj"
 },
 {
   "directory": "D:/Projects/C++/Raylib-Test/build",
-  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -external:ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include -external:W0 /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd /Fo_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\rtextures.c.obj /Fd_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\raylib.pdb /FS -c D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\rtextures.c",
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo -DBUILD_LIBTYPE_SHARED -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS -Draylib_EXPORTS -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -external:ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include -external:W0 /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd /Fo_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\rtextures.c.obj /Fd_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\ /FS -c D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\rtextures.c",
   "file": "D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\rtextures.c",
   "output": "_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\rtextures.c.obj"
 },
 {
   "directory": "D:/Projects/C++/Raylib-Test/build",
-  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -external:ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include -external:W0 /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd /Fo_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\utils.c.obj /Fd_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\raylib.pdb /FS -c D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\utils.c",
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo -DBUILD_LIBTYPE_SHARED -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS -Draylib_EXPORTS -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -external:ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include -external:W0 /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd /Fo_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\utils.c.obj /Fd_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\ /FS -c D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\utils.c",
   "file": "D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\utils.c",
   "output": "_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\utils.c.obj"
 },
 {
   "directory": "D:/Projects/C++/Raylib-Test/build",
-  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -external:ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include -external:W0 /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd /Fo_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\raudio.c.obj /Fd_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\raylib.pdb /FS -c D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\raudio.c",
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo -DBUILD_LIBTYPE_SHARED -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS -Draylib_EXPORTS -ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src -external:ID:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\external\\glfw\\include -external:W0 /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd /Fo_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\raudio.c.obj /Fd_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\ /FS -c D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\raudio.c",
   "file": "D:\\Projects\\C++\\Raylib-Test\\build\\_deps\\raylib-src\\src\\raudio.c",
   "output": "_deps\\raylib-build\\raylib\\CMakeFiles\\raylib.dir\\raudio.c.obj"
 },

@@ -1,8 +1,34 @@
 #include "platform.hpp"
 #include <format>
+#include <iostream>
+#include <filesystem>
+
+static std::string currentFile = std::string();
+static std::string path = std::filesystem::current_path().string();
+
+void copyLib() {
+    time_t now;
+    time(&now);
+    std::tm _tm;
+    char buf[sizeof "2024-06-11T00-56-02"];
+    gmtime_s(&_tm, &now);
+
+    strftime(buf, sizeof buf, "%FT%H-%M-%S", &_tm);
+    currentFile = std::format("game{}.dll", buf);
+    // this will work too, if your compiler doesn't support %F or %T:
+    //strftime(buf, sizeof buf, "%Y-%m-%dT%H:%M:%SZ", gmtime(&now));
+    try {
+      std::filesystem::copy_file("game.dll", currentFile.c_str());
+    } catch (std::filesystem::filesystem_error& e) {
+      std::cout << e.what() << "\n";
+    }
+}
+
 #ifdef _WIN32
-GameLib LoadGameLibrary(GameAPI* gameAPI, int reloadCount) {
-    GameLib gameLib = LoadLibraryA(std::format("game{}.dll", reloadCount).c_str());
+
+GameLib LoadGameLibrary(GameAPI* gameAPI) {
+    copyLib();
+    GameLib gameLib = LoadLibraryA(currentFile.c_str());
     if (!gameLib) {
         // Handle error
         return nullptr;
@@ -43,4 +69,3 @@ void FreeGameLibrary(GameLib gameLib) {
     FreeLibrary(gameLib);
 }
 #endif
-
