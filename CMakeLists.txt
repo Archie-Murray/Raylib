@@ -40,4 +40,8 @@ add_library(game SHARED ./src/game.cpp)
 target_compile_definitions(game PRIVATE GAME_EXPORTS)
 target_link_libraries(game PRIVATE raylib)
 
-
+# Custom target to build only the game library
+add_custom_target(game_only
+  DEPENDS game
+  COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target game
+)

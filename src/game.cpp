@@ -10,13 +10,14 @@ Game::~Game() {
 }
 
 void Game::Start(int fps) {
-    SetTargetFPS(fps);
+    // SetTargetFPS(fps);
 }
 
 void Game::Update() {
     // Update logic that uses Raylib functions
     DrawFPS(10, 10);
-    DrawRectangle(100, 100, 200, 200, GREEN);
+    DrawRectangle(1700, 100, 200, 400, GREEN);
+    DrawRectangle(100, 100, 200, 400, BLUE);
 }
 
 void Game::Exit() {

@@ -19,9 +19,9 @@ typedef void (*UpdateGameFunc)(Game *);
 typedef void (*DestroyGameFunc)(Game *);
 
 struct GameAPI {
-  CreateGameFunc createGame;
-  UpdateGameFunc updateGame;
-  DestroyGameFunc destroyGame;
+    CreateGameFunc createGame;
+    UpdateGameFunc updateGame;
+    DestroyGameFunc destroyGame;
 };
 
 GameLib LoadGameLibrary(GameAPI *gameAPI);

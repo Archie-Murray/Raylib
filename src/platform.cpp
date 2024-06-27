@@ -2,6 +2,7 @@
 #include <format>
 #include <iostream>
 #include <filesystem>
+#include <string>
 
 static std::string currentFile = std::string();
 static std::string path = std::filesystem::current_path().string();
@@ -12,13 +13,15 @@ void copyLib() {
     std::tm _tm;
     char buf[sizeof "2024-06-11T00-56-02"];
     gmtime_s(&_tm, &now);
-
     strftime(buf, sizeof buf, "%FT%H-%M-%S", &_tm);
+    std::string lastFile = std::string(currentFile);
+    
     currentFile = std::format("game{}.dll", buf);
-    // this will work too, if your compiler doesn't support %F or %T:
-    //strftime(buf, sizeof buf, "%Y-%m-%dT%H:%M:%SZ", gmtime(&now));
     try {
       std::filesystem::copy_file("game.dll", currentFile.c_str());
+      if (!lastFile.empty()) {
+          std::filesystem::remove(lastFile);
+      }
     } catch (std::filesystem::filesystem_error& e) {
       std::cout << e.what() << "\n";
     }

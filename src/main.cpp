@@ -1,19 +1,17 @@
-#include "raylib.h"
 #include "platform.cpp"
+#include "raylib.h"
 
 int screenWidth = 1920;
 int screenHeight = 1080;
 
 int main() {
-    int reloadCount = 0;
     GameAPI gameAPI = {};
-    GameLib gameLib = LoadGameLibrary(&gameAPI, reloadCount);
+    GameLib gameLib = LoadGameLibrary(&gameAPI);
     if (gameLib == nullptr) {
         TraceLog(LOG_ERROR, "Could not load game API");
         return -1;
     }
-    reloadCount++;
-    Game* game = gameAPI.createGame();
+    Game *game = gameAPI.createGame();
     if (!game) {
         TraceLog(LOG_ERROR, "Could not create game!");
         FreeGameLibrary(gameLib);
@@ -26,14 +24,13 @@ int main() {
         BeginDrawing();
         ClearBackground(WHITE);
         if (IsKeyPressed(KEY_R)) {
-          FreeGameLibrary(gameLib);
-          gameLib = LoadGameLibrary(&gameAPI, reloadCount);
-          reloadCount++;
+            FreeGameLibrary(gameLib);
+            gameLib = LoadGameLibrary(&gameAPI);
         }
         if (IsWindowReady()) {
-          gameAPI.updateGame(game);
+            gameAPI.updateGame(game);
         } else {
-          TraceLog(LOG_ERROR, "Window not ready!");
+            TraceLog(LOG_ERROR, "Window not ready!");
         }
         EndDrawing();
     }
@@ -41,4 +38,3 @@ int main() {
     gameAPI.destroyGame(game);
     FreeGameLibrary(gameLib);
 }
-
