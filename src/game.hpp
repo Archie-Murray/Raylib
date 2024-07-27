@@ -1,6 +1,7 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
+#include "raylib.h"
 #define EXTERNAL extern "C"
 
 #ifdef _WIN32
@@ -15,6 +16,8 @@
 
 EXTERNAL class GAME_API Game {
 public:
+    Vector2 playerPos;
+
     Game();
     ~Game();
     void Start(int fps);
@@ -23,6 +26,7 @@ public:
 };
 
 EXTERNAL GAME_API Game* CreateGame();
+EXTERNAL GAME_API void StartGame(Game* game, int targetFPS);
 EXTERNAL GAME_API void DestroyGame(Game* game);
 EXTERNAL GAME_API void UpdateGame(Game* game);
 #endif // GAME_HPP

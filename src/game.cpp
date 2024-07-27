@@ -1,7 +1,9 @@
 #include "game.hpp"
 #include "raylib.h"
+#include "raymath.h"
 
 Game::Game() {
+    playerPos = {};
     // Initialization code (but do not initialize Raylib here)
 }
 
@@ -10,14 +12,23 @@ Game::~Game() {
 }
 
 void Game::Start(int fps) {
-    // SetTargetFPS(fps);
+    playerPos = {GetScreenWidth() * 0.5f, GetScreenHeight() * 0.5f};
+    SetTargetFPS(fps);
 }
 
 void Game::Update() {
     // Update logic that uses Raylib functions
-    DrawFPS(10, 10);
-    DrawRectangle(1700, 100, 200, 400, GREEN);
-    DrawRectangle(100, 100, 200, 400, BLUE);
+    DrawFPS(1800, 10);
+    Vector2 input = {
+        (float)(IsKeyDown(KEY_D) - IsKeyDown(KEY_A)),
+        (float)(IsKeyDown(KEY_S) - IsKeyDown(KEY_W))
+    };
+    input = Vector2Normalize(input);
+    input = Vector2Scale(input, 175.0f * GetFrameTime());
+    playerPos = Vector2Add(playerPos, input);
+    // playerPos.x += input.x;
+    // playerPos.y += input.y;
+    DrawRectangleRec({playerPos.x, playerPos.y, 40.0f, 40.0f}, RED);
 }
 
 void Game::Exit() {
@@ -26,6 +37,10 @@ void Game::Exit() {
 
 EXTERNAL Game* CreateGame() {
     return new Game();
+}
+
+EXTERNAL void StartGame(Game* game, int targetFPS) {
+    game->Start(targetFPS);
 }
 
 EXTERNAL void UpdateGame(Game *game) {

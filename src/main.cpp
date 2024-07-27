@@ -1,6 +1,7 @@
 #include "platform.cpp"
 #include "raylib.h"
 
+
 int screenWidth = 1920;
 int screenHeight = 1080;
 
@@ -18,23 +19,20 @@ int main() {
         return -1;
     }
     InitWindow(screenWidth, screenHeight, "Raylib");
-    SetTargetFPS(144);
+    gameAPI.startGame(game, 144);
     // Main game loop
     while (!WindowShouldClose()) {
         BeginDrawing();
-        ClearBackground(WHITE);
+        ClearBackground(BLACK);
         if (IsKeyPressed(KEY_R)) {
             FreeGameLibrary(gameLib);
             gameLib = LoadGameLibrary(&gameAPI);
         }
-        if (IsWindowReady()) {
-            gameAPI.updateGame(game);
-        } else {
-            TraceLog(LOG_ERROR, "Window not ready!");
-        }
+        gameAPI.updateGame(game);
         EndDrawing();
     }
-
     gameAPI.destroyGame(game);
     FreeGameLibrary(gameLib);
+    DestroyLibraryFile();
+    CloseWindow();
 }

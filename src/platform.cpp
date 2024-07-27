@@ -1,4 +1,5 @@
 #include "platform.hpp"
+#include "raylib.h"
 #include <format>
 #include <iostream>
 #include <filesystem>
@@ -38,9 +39,10 @@ GameLib LoadGameLibrary(GameAPI* gameAPI) {
     }
   
     gameAPI->createGame = (CreateGameFunc)GetProcAddress(gameLib, "CreateGame");
+    gameAPI->startGame = (StartGameFunc)GetProcAddress(gameLib, "StartGame");
     gameAPI->updateGame = (UpdateGameFunc)GetProcAddress(gameLib, "UpdateGame");
     gameAPI->destroyGame = (DestroyGameFunc)GetProcAddress(gameLib, "DestroyGame");
-    if (!gameAPI->createGame || !gameAPI->updateGame || !gameAPI->destroyGame) {
+    if (!gameAPI->createGame || !gameAPI->updateGame || !gameAPI->destroyGame || !gameAPI->startGame) {
       return nullptr;
     } else {
       return gameLib;
@@ -49,6 +51,15 @@ GameLib LoadGameLibrary(GameAPI* gameAPI) {
 
 void FreeGameLibrary(GameLib gameLib) {
     FreeLibrary(gameLib);
+}
+
+void DestroyLibraryFile() {
+    TraceLog(LOG_INFO, std::format("Deleting file {}", currentFile).c_str());
+    try {
+        std::filesystem::remove(currentFile);
+    } catch (std::filesystem::filesystem_error &e) {
+        TraceLog(LOG_ERROR, e.what());
+    }
 }
 #else
 GameLib LoadGameLibrary(GameAPI* gameAPI) {

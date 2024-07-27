@@ -17,7 +17,7 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
   )
   FetchContent_GetProperties(raylib)
   if (NOT raylib_POPULATED) # Have we downloaded raylib yet?
-    set(FETCHCONTENT_QUIET NO)
+    set(FETCHCONTENT_QUIET YES)
     FetchContent_Populate(raylib)
     set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE) # don't build the supplied examples
     add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})

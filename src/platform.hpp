@@ -9,17 +9,19 @@
 typedef HMODULE GameLib;
 #else
 #include <dlfcn.h>
-typedef void *GameLib;
+typedef void* GameLib;
 #endif
 
 #include "game.hpp"
 
 typedef Game *(*CreateGameFunc)();
+typedef void (*StartGameFunc)(Game *, int);
 typedef void (*UpdateGameFunc)(Game *);
 typedef void (*DestroyGameFunc)(Game *);
 
 struct GameAPI {
     CreateGameFunc createGame;
+    StartGameFunc startGame;
     UpdateGameFunc updateGame;
     DestroyGameFunc destroyGame;
 };
