@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.24) # FetchContent is available in 3.11+
 project(Raylib)
 
+if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+  error("MacOS is not supported")
+endif()
+
 # Generate compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "") # works
@@ -16,19 +20,26 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
     URL https://github.com/raysan5/raylib/archive/refs/tags/${RAYLIB_VERSION}.tar.gz
   )
   FetchContent_GetProperties(raylib)
-  if (NOT raylib_POPULATED) # Have we downloaded raylib yet?
+  if (NOT raylib_POPULATED)
     set(FETCHCONTENT_QUIET YES)
     FetchContent_Populate(raylib)
-    set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE) # don't build the supplied examples
+    set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE)
     add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
   endif()
 endif()
 
-# Windows moment
+# Windows
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/um\"")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/shared\"")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/ucrt\"")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/um\"")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/shared\"")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/ucrt\"")
+  if (NOT EXISTS "${CMAKE_BINARY_DIR}/raylib.dll") # Copy Raylib library to ${CMAKE_BINARY_DIR}
+    file(COPY ${raylib_BINARY_DIR}/raylib/raylib.dll DESTINATION ${CMAKE_BINARY_DIR})
+  endif()
+else()
+  if (NOT EXISTS "${CMAKE_BINARY_DIR}/raylib.so")
+    file(COPY ${raylib_BINARY_DIR}/raylib/raylib.so DESTINATION ${CMAKE_BINARY_DIR})
+  endif()
 endif()
 # Our Project
 add_executable(${PROJECT_NAME} ./src/main.cpp)
@@ -39,7 +50,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 add_library(game SHARED ./src/game.cpp)
 target_compile_definitions(game PRIVATE GAME_EXPORTS)
 target_link_libraries(game PRIVATE raylib)
-
 # Custom target to build only the game library
 add_custom_target(game_only
   DEPENDS game
