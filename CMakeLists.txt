@@ -23,7 +23,7 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
   if (NOT raylib_POPULATED)
     set(FETCHCONTENT_QUIET YES)
     FetchContent_Populate(raylib)
-    set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE)
+    set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE) # Need to change for release build where Raylib and game are all linked
     add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
   endif()
 endif()

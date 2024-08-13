@@ -1,11 +1,15 @@
 #include "platform.cpp"
 #include "raylib.h"
 
+enum Test { Value, OtherValue, Count };
+
+static int nums[Test::Count] = { 1, 2 };
 
 int screenWidth = 1920;
 int screenHeight = 1080;
 
 int main() {
+    std::cout << "Value: " << nums[Value];
     GameAPI gameAPI = {};
     GameLib gameLib = LoadGameLibrary(&gameAPI);
     if (gameLib == nullptr) {

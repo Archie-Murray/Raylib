@@ -1,5 +1,6 @@
 #include "platform.hpp"
 #include "raylib.h"
+#include <ctime>
 #include <format>
 #include <iostream>
 #include <filesystem>
