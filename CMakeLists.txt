@@ -42,25 +42,28 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     file(COPY ${raylib_BINARY_DIR}/raylib/raylib.dll DESTINATION ${CMAKE_BINARY_DIR})
   endif()
 else()
-  if (NOT EXISTS "${CMAKE_BINARY_DIR}/raylib.so")
-    file(COPY ${raylib_BINARY_DIR}/raylib/raylib.so DESTINATION ${CMAKE_BINARY_DIR})
+  if (NOT EXISTS "${CMAKE_BINARY_DIR}/libraylib.so")
+    file(COPY ${raylib_BINARY_DIR}/raylib/libraylib.so DESTINATION ${CMAKE_BINARY_DIR})
   endif()
 endif()
 # Main
 add_executable(${PROJECT_NAME} ./src/main.cpp)
-target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
-target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-if(UNIX AND NOT APPLE)
-    # Linux-specific flags
-    target_compile_definitions(raylib PRIVATE PLATFORM_LINUX)
-    # Link additional libraries like pthread if necessary
-    target_link_libraries(raylib PRIVATE pthread)
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+  target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
+else()
+  target_link_libraries(${PROJECT_NAME} PRIVATE libraylib)
+endif()
+  target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 endif()
 
 # Game dynamic library for hot reloading
 add_library(game SHARED ./src/game.cpp)
 target_compile_definitions(game PRIVATE GAME_EXPORTS)
-target_link_libraries(game PRIVATE raylib)
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+  target_link_libraries(game PRIVATE raylib)
+else()
+  target_link_libraries(game PRIVATE libraylib)
+endif()
 # Custom target to build only the game library
 add_custom_target(game_only
   DEPENDS game
