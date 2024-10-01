@@ -12,8 +12,7 @@ static std::string path = std::filesystem::current_path().string();
     std::string FileTimeStamp() {
         SYSTEMTIME time;
         GetLocalTime(&time);
-
-        char buffer[100];
+        char buffer[20];
         snprintf(buffer, sizeof(buffer), "%04d-%02d-%02d_%02d-%02d-%02d",
                  time.wYear, time.wMonth, time.wDay,
                  time.wHour, time.wMinute, time.wSecond);
@@ -25,14 +24,10 @@ static std::string path = std::filesystem::current_path().string();
         time_t t = time(nullptr);
         struct tm* timeinfo = localtime(&t);
 
-        char buffer[100];
+        char buffer[20];
         snprintf(buffer, sizeof(buffer), "%04d-%02d-%02d_%02d-%02d-%02d",
-                 timeinfo->tm_year + 1900,
-                 timeinfo->tm_mon + 1,
-                 timeinfo->tm_mday,
-                 timeinfo->tm_hour,
-                 timeinfo->tm_min,
-                 timeinfo->tm_sec);
+                 timeinfo->tm_year + 1900, timeinfo->tm_mon + 1, timeinfo->tm_mday,
+                 timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);
 
         return std::string(buffer);
     }
@@ -93,9 +88,10 @@ GameLib LoadGameLibrary(GameAPI* gameAPI) {
         return gameLib;
     }
   
-    gameAPI->createGame = (CreateGameFunc)dysm(gameLib, "CreateGame");
-    gameAPI->updateGame = (UpdateGameFunc)dysm(gameLib, "UpdateGame");
-    gameAPI->destroyGame = (DestroyGameFunc)dysm(gameLib, "DestroyGame");
+    gameAPI->createGame = (CreateGameFunc)dlysm(gameLib, "CreateGame");
+    gameAPI->startGame = (StartGameFunc)dlysm(gameLib, "StartGame");
+    gameAPI->updateGame = (UpdateGameFunc)dlysm(gameLib, "UpdateGame");
+    gameAPI->destroyGame = (DestroyGameFunc)dlysm(gameLib, "DestroyGame");
     if (!gameAPI->createGame || !gameAPI->updateGame || !gameAPI->destroyGame) {
       return nullptr;
     } else {
@@ -104,6 +100,6 @@ GameLib LoadGameLibrary(GameAPI* gameAPI) {
 }
 
 void FreeGameLibrary(GameLib gameLib) {
-    FreeLibrary(gameLib);
+    dlclose(gameLib);
 }
 #endif
