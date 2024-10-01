@@ -1,6 +1,5 @@
 #include "platform.hpp"
 #include "raylib.h"
-#include <ctime>
 #include <format>
 #include <iostream>
 #include <filesystem>
@@ -9,16 +8,40 @@
 static std::string currentFile = std::string();
 static std::string path = std::filesystem::current_path().string();
 
+#ifdef _WIN32
+    std::string FileTimeStamp() {
+        SYSTEMTIME time;
+        GetLocalTime(&time);
+
+        char buffer[100];
+        snprintf(buffer, sizeof(buffer), "%04d-%02d-%02d_%02d-%02d-%02d",
+                 time.wYear, time.wMonth, time.wDay,
+                 time.wHour, time.wMinute, time.wSecond);
+
+        return std::string(buffer);
+    }
+#else
+    std::string FileTimeStamp() {
+        time_t t = time(nullptr);
+        struct tm* timeinfo = localtime(&t);
+
+        char buffer[100];
+        snprintf(buffer, sizeof(buffer), "%04d-%02d-%02d_%02d-%02d-%02d",
+                 timeinfo->tm_year + 1900,
+                 timeinfo->tm_mon + 1,
+                 timeinfo->tm_mday,
+                 timeinfo->tm_hour,
+                 timeinfo->tm_min,
+                 timeinfo->tm_sec);
+
+        return std::string(buffer);
+    }
+#endif
+
 void copyLib() {
-    time_t now;
-    time(&now);
-    std::tm _tm;
-    char buf[sizeof "2024-06-11T00-56-02"];
-    gmtime_s(&_tm, &now);
-    strftime(buf, sizeof buf, "%FT%H-%M-%S", &_tm);
     std::string lastFile = std::string(currentFile);
     
-    currentFile = std::format("game{}.dll", buf);
+    currentFile = std::format("game{}.dll", FileTimeStamp().c_str());
     try {
       std::filesystem::copy_file("game.dll", currentFile.c_str());
       if (!lastFile.empty()) {

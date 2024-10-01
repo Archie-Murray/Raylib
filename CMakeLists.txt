@@ -23,7 +23,12 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
   if (NOT raylib_POPULATED)
     set(FETCHCONTENT_QUIET YES)
     FetchContent_Populate(raylib)
-    set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE) # Need to change for release build where Raylib and game are all linked
+    if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+      set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE) 
+   else()
+      set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE) 
+      set(raylib_USE_STATIC_LIBS OFF)
+    endif()
     add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
   endif()
 endif()
@@ -41,10 +46,16 @@ else()
     file(COPY ${raylib_BINARY_DIR}/raylib/raylib.so DESTINATION ${CMAKE_BINARY_DIR})
   endif()
 endif()
-# Our Project
+# Main
 add_executable(${PROJECT_NAME} ./src/main.cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+if(UNIX AND NOT APPLE)
+    # Linux-specific flags
+    target_compile_definitions(raylib PRIVATE PLATFORM_LINUX)
+    # Link additional libraries like pthread if necessary
+    target_link_libraries(raylib PRIVATE pthread)
+endif()
 
 # Game dynamic library for hot reloading
 add_library(game SHARED ./src/game.cpp)

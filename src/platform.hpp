@@ -8,6 +8,7 @@
 #include "Windows.h"
 typedef HMODULE GameLib;
 #else
+#include <ctime>
 #include <dlfcn.h>
 typedef void* GameLib;
 #endif
