@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.24) # FetchContent is available in 3.11+
 project(Raylib)
 
-if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+if (APPLE)
   error("MacOS is not supported")
 endif()
 
@@ -10,69 +10,44 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "") # works
 set(CMAKE_CXX_STANDARD 20)
 
-# Set Raylib to be built as a shared library globally
-set(BUILD_SHARED_LIBS FORCE ON)
-set(FETCHCONTENT_QUIET OFF)
-# Find or Fetch Raylib
-if(NOT TARGET raylib)
-    include(FetchContent)
-    FetchContent_Declare(
-        raylib
-        GIT_REPOSITORY https://github.com/raysan5/raylib.git
-        GIT_TAG 5.0 # Replace with the desired version
-    )
-    # Fetch Raylib
-    FetchContent_MakeAvailable(raylib)
+if (WIN32)
+  set(RAYLIB_DIR "./raylib-win/")
+  set(OS_LIBS "opengl32.lib user32.lib gdi32.lib kernel32.lib shell32.lib winmm.lib")
+  if(MSVC)
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:libmt")
+  endif()
+else()
+  set(RAYLIB_DIR "./raylib-linux/")
+  set(OS_LIBS "")
 endif()
 
-# Windows
-if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/um\"")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/shared\"")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I\"C:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/ucrt\"")
-elseif (UNIX AND NOT APPLE)
-    target_compile_definitions(game_only PRIVATE PLATFORM_LINUX)
-    target_compile_definitions(${PROJECT_NAME} PRIVATE PLATFORM_LINUX)
-    target_link_libraries(game_only PRIVATE pthread)
-    target_link_libraries(${PROJECT_NAME} PRIVATE pthread)
+if (CMAKE_BUILD_TYPE STREQUAL "Release")
+  if (WIN32)
+    set(RAYLIB_LIB "raylib")
+  else()
+    set(RAYLIB_LIB "libraylib.a")
+  endif()
+  add_executable(${PROJECT_NAME} src/main_release.cpp)
+  target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}${RAYLIB_DIR}lib/raylib)
+  target_link_libraries(${PROJECT_NAME} ${OS_LIBS})
+  include_directories(${RAYLIB_DIR}/include/)
+else()
+  # Set dynamic library locations (I hate windows!)
+  if (WIN32)
+    set(RAYLIB_SO "raylib.dll")
+    set(RAYLIB_LIB "raylibdll.lib")
+  else()
+    set(RAYLIB_SO "libraylib.so")
+    set(RAYLIB_LIB "libraylib.so")
+  endif()
+  if (NOT EXISTS ${CMAKE_BINARY_DIR}/${RAYLIB_SO}) 
+    file(COPY ${RAYLIB_DIR}/lib/${RAYLIB_SO} DESTINATION ${CMAKE_BINARY_DIR})
+  endif()
+  add_library(game SHARED src/game.cpp)
+  add_executable(${PROJECT_NAME} src/main.cpp) 
+  target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}${RAYLIB_DIR}lib/${RAYLIB_LIB})
+  target_link_libraries(${PROJECT_NAME} ${OS_LIBS})
+  target_link_libraries(game ${CMAKE_SOURCE_DIR}${RAYLIB_DIR}lib/${RAYLIB_LIB})
+  target_link_libraries(${PROJECT_NAME} game)
+  include_directories(${RAYLIB_DIR}/include/)
 endif()
-
-# Main
-add_executable(${PROJECT_NAME} ./src/main.cpp)
-target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
-
-# Game dynamic library for hot reloading
-add_library(game SHARED ./src/game.cpp)
-target_compile_definitions(game PRIVATE GAME_EXPORTS)
-target_link_libraries(game PRIVATE raylib)
-
-# Custom post-build step for copying Raylib shared library after building the main project (MyGame)
-if(WIN32)
-    # Path to the compiled Raylib DLL on Windows
-    set(RAYLIB_DLL_PATH "${CMAKE_BINARY_DIR}/_deps/raylib-build/raylib/raylib.dll")
-
-    # Copy Raylib DLL after building the main project (MyGame)
-    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "${RAYLIB_DLL_PATH}"
-        "${CMAKE_BINARY_DIR}"
-        COMMENT "Copying Raylib DLL to ${CMAKE_BINARY_DIR} executable directory"
-    )
-elseif(UNIX)
-    # Path to the compiled Raylib shared library on Linux
-    set(RAYLIB_SO_PATH "${CMAKE_BINARY_DIR}/_deps/raylib-build/raylib/libraylib.so")
-
-    # Copy Raylib shared library after building the main project (MyGame)
-    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "${RAYLIB_SO_PATH}"
-        "${CMAKE_BINARY_DIR}"
-        COMMENT "Copying Raylib shared library to ${CMAKE_BINARY_DIR} executable directory"
-    )
-endif()
-
-# Custom target to build only the game library
-add_custom_target(game_only
-  DEPENDS game
-  COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target game
-)
