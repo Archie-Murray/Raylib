@@ -1,9 +1,6 @@
 #include "platform.cpp"
 #include "raylib.h"
 
-int screenWidth = 1920;
-int screenHeight = 1080;
-
 int main() {
     GameAPI gameAPI = {};
     GameLib gameLib = LoadGameLibrary(&gameAPI);
@@ -17,14 +14,22 @@ int main() {
         FreeGameLibrary(gameLib);
         return -1;
     }
-    InitWindow(screenWidth, screenHeight, "Raylib");
-    gameAPI.startGame(game, 144);
+    InitWindow(0, 0, "Raylib"); // Gives default of max screen size, will scale later
+    int monitor = GetCurrentMonitor();
+    int screenWidth = GetMonitorWidth(monitor) > 1920 ? 1920 : 1260;
+    int screenHeight = GetMonitorHeight(monitor) > 1080 ? 1080 : 720;
+    SetWindowSize(screenWidth, screenHeight);
+    SetWindowPosition(GetMonitorWidth(monitor) / 2 - screenWidth / 2, GetMonitorHeight(monitor) / 2 - screenHeight / 2);
+    gameAPI.startGame(game, 144, screenWidth, screenHeight);
     // Main game loop
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(BLACK);
-        if (IsKeyPressed(KEY_R)) {
+        bool doReload = IsKeyPressed(KEY_SPACE);
+        DrawText(doReload ? "Reload pressed" : "Not reloading", 10, 10, 10, doReload ? RED : GREEN);
+        if (doReload) {
             FreeGameLibrary(gameLib);
+            TraceLog(LOG_INFO, "Reloading game lib...");
             gameLib = LoadGameLibrary(&gameAPI);
         }
         gameAPI.updateGame(game);

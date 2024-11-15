@@ -20,13 +20,13 @@ public:
 
     Game();
     ~Game();
-    void Start(int fps);
+    void Start(int fps, int width, int height);
     void Update();
     void Exit();
 };
 
 EXTERNAL GAME_API Game* CreateGame();
-EXTERNAL GAME_API void StartGame(Game* game, int targetFPS);
+EXTERNAL GAME_API void StartGame(Game* game, int targetFPS, int width, int height);
 EXTERNAL GAME_API void DestroyGame(Game* game);
 EXTERNAL GAME_API void UpdateGame(Game* game);
 #endif // GAME_HPP

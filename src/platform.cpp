@@ -10,6 +10,20 @@ static std::string currentFile = std::string();
 static std::string path = std::filesystem::current_path().string();
 
 #ifdef _WIN32
+    void copyLib() {
+        std::string lastFile = std::string(currentFile);
+        
+        currentFile = std::format("game{}.dll", FileTimeStamp().c_str());
+        try {
+          std::filesystem::copy_file("game.dll", currentFile.c_str());
+          if (!lastFile.empty()) {
+              std::filesystem::remove(lastFile);
+          }
+        } catch (std::filesystem::filesystem_error& e) {
+          std::cout << e.what() << "\n";
+        }
+    }
+
     std::string FileTimeStamp() {
         SYSTEMTIME time;
         GetLocalTime(&time);
@@ -20,7 +34,7 @@ static std::string path = std::filesystem::current_path().string();
 
         return std::string(buffer);
     }
-#else
+#else    
     std::string FileTimeStamp() {
         time_t t = time(nullptr);
         struct tm* timeinfo = localtime(&t);
@@ -32,21 +46,23 @@ static std::string path = std::filesystem::current_path().string();
 
         return std::string(buffer);
     }
-#endif
 
-void copyLib() {
-    std::string lastFile = std::string(currentFile);
-    
-    currentFile = std::format("game{}.dll", FileTimeStamp().c_str());
-    try {
-      std::filesystem::copy_file("game.dll", currentFile.c_str());
-      if (!lastFile.empty()) {
-          std::filesystem::remove(lastFile);
-      }
-    } catch (std::filesystem::filesystem_error& e) {
-      std::cout << e.what() << "\n";
+    void copyLib() {
+        std::string lastFile = std::string(currentFile);
+        
+        currentFile = std::format("libgame{}.so", FileTimeStamp().c_str());
+        try {
+          std::filesystem::copy_file("libgame.so", currentFile.c_str());
+          if (!lastFile.empty()) {
+              std::filesystem::remove(lastFile);
+          }
+        } catch (std::filesystem::filesystem_error& e) {
+          std::cout << e.what() << "\n";
+        }
     }
-}
+
+
+#endif
 
 #ifdef _WIN32
 
@@ -83,6 +99,7 @@ void DestroyLibraryFile() {
 }
 #else
 GameLib LoadGameLibrary(GameAPI* gameAPI) {
+    copyLib();
     GameLib gameLib = (GameLib) dlopen("libgame.so", RTLD_NOW);
     if (!gameLib) {
         // Handle error

@@ -16,7 +16,7 @@ typedef void* GameLib;
 #include "game.hpp"
 
 typedef Game *(*CreateGameFunc)();
-typedef void (*StartGameFunc)(Game *, int);
+typedef void (*StartGameFunc)(Game *, int, int, int);
 typedef void (*UpdateGameFunc)(Game *);
 typedef void (*DestroyGameFunc)(Game *);
 

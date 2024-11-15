@@ -1,6 +1,7 @@
 #include "game.hpp"
 #include "raylib.h"
 #include "raymath.h"
+#include <cmath>
 
 Game::Game() {
     playerPos = {};
@@ -11,8 +12,9 @@ Game::~Game() {
     // Cleanup code
 }
 
-void Game::Start(int fps) {
-    playerPos = {GetScreenWidth() * 0.5f, GetScreenHeight() * 0.5f};
+void Game::Start(int fps, int width, int height) {
+    TraceLog(LOG_INFO, TextFormat("Screen Size at Game::Start(): (%f, %f)", GetScreenWidth(), GetScreenHeight()));
+    playerPos = {width * 0.5f, height * 0.5f};
     SetTargetFPS(fps);
 }
 
@@ -23,12 +25,13 @@ void Game::Update() {
         (float)(IsKeyDown(KEY_D) - IsKeyDown(KEY_A)),
         (float)(IsKeyDown(KEY_S) - IsKeyDown(KEY_W))
     };
+    DrawText(TextFormat("Player Position: (%f, %f)", playerPos.x, playerPos.y), round(GetScreenWidth() * 0.8f), 10, 10, WHITE);
     input = Vector2Normalize(input);
     input = Vector2Scale(input, 175.0f * GetFrameTime());
     playerPos = Vector2Add(playerPos, input);
     // playerPos.x += input.x;
     // playerPos.y += input.y;
-    DrawRectangleRec({playerPos.x, playerPos.y, 40.0f, 40.0f}, RED);
+    DrawRectanglePro({playerPos.x, playerPos.y, 40.0f, 40.0f}, {40, 40}, 0.0f, RED);
 }
 
 void Game::Exit() {
@@ -39,8 +42,8 @@ EXTERNAL Game* CreateGame() {
     return new Game();
 }
 
-EXTERNAL void StartGame(Game* game, int targetFPS) {
-    game->Start(targetFPS);
+EXTERNAL void StartGame(Game* game, int targetFPS, int width, int height) {
+    game->Start(targetFPS, width, height);
 }
 
 EXTERNAL void UpdateGame(Game *game) {
