@@ -1,7 +1,5 @@
 #include "platform.hpp"
 #include "raylib.h"
-#include <cstddef>
-#include <dlfcn.h>
 #include <filesystem>
 #include <format>
 #include <iostream>
@@ -11,6 +9,15 @@ static std::string currentFile = std::string();
 static std::string path = std::filesystem::current_path().string();
 
 #ifdef _WIN32
+std::string FileTimeStamp() {
+  SYSTEMTIME time;
+  GetLocalTime(&time);
+  char buffer[20];
+  snprintf(buffer, sizeof(buffer), "%04d-%02d-%02d_%02d-%02d-%02d", time.wYear,
+           time.wMonth, time.wDay, time.wHour, time.wMinute, time.wSecond);
+
+  return std::string(buffer);
+}
 void copyLib() {
   std::string lastFile = std::string(currentFile);
 
@@ -25,16 +32,8 @@ void copyLib() {
   }
 }
 
-std::string FileTimeStamp() {
-  SYSTEMTIME time;
-  GetLocalTime(&time);
-  char buffer[20];
-  snprintf(buffer, sizeof(buffer), "%04d-%02d-%02d_%02d-%02d-%02d", time.wYear,
-           time.wMonth, time.wDay, time.wHour, time.wMinute, time.wSecond);
-
-  return std::string(buffer);
-}
 #else
+#include <dlfcn.h>
 std::string FileTimeStamp() {
   time_t t = time(nullptr);
   struct tm *timeinfo = localtime(&t);

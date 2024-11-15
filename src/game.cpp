@@ -13,7 +13,7 @@ Game::~Game() {
 }
 
 void Game::Start(int fps, int width, int height) {
-    TraceLog(LOG_INFO, TextFormat("Screen Size at Game::Start(): (%f, %f)", GetScreenWidth(), GetScreenHeight()));
+    TraceLog(LOG_INFO, TextFormat("Screen Size at Game::Start(): (%f, %f)", width, height));
     playerPos = {width * 0.5f, height * 0.5f};
     SetTargetFPS(fps);
 }
