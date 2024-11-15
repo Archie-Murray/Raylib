@@ -1,14 +1,8 @@
 [
 {
   "directory": "/home/archie/Dev/Raylib/build",
-  "command": "/usr/bin/c++ -DGAME_EXPORTS -Dgame_EXPORTS -I/home/archie/Dev/Raylib/raylib-linux/include -std=gnu++20 -fPIC -o CMakeFiles/game.dir/src/game.cpp.o -c /home/archie/Dev/Raylib/src/game.cpp",
+  "command": "clang++ -DGAME_EXPORTS -Dgame_EXPORTS -I/home/archie/Dev/Raylib/raylib-linux/include -std=gnu++20 -fPIC -o CMakeFiles/game.dir/src/game.cpp.o -c /home/archie/Dev/Raylib/src/game.cpp",
   "file": "/home/archie/Dev/Raylib/src/game.cpp",
   "output": "CMakeFiles/game.dir/src/game.cpp.o"
-},
-{
-  "directory": "/home/archie/Dev/Raylib/build",
-  "command": "/usr/bin/c++ -I/home/archie/Dev/Raylib/raylib-linux/include -std=gnu++20 -o CMakeFiles/Raylib.dir/src/main.cpp.o -c /home/archie/Dev/Raylib/src/main.cpp",
-  "file": "/home/archie/Dev/Raylib/src/main.cpp",
-  "output": "CMakeFiles/Raylib.dir/src/main.cpp.o"
 }
 ]

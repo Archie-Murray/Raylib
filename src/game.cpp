@@ -32,6 +32,7 @@ void Game::Update() {
     // playerPos.x += input.x;
     // playerPos.y += input.y;
     DrawRectanglePro({playerPos.x, playerPos.y, 40.0f, 40.0f}, {40, 40}, 0.0f, RED);
+    // DrawRectangle(100, 10, 100, 100, RED);
 }
 
 void Game::Exit() {
