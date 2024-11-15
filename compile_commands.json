@@ -1,8 +1,14 @@
 [
 {
-  "directory": "D:/Projects/C++/Raylib-Test/build",
-  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DGAME_EXPORTS -Dgame_EXPORTS -ID:\\Projects\\C++\\Raylib-Test\\.\\raylib-win\\include /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++20 -MDd /FoCMakeFiles\\game.dir\\src\\game.cpp.obj /FdCMakeFiles\\game.dir\\ /FS -c D:\\Projects\\C++\\Raylib-Test\\src\\game.cpp",
-  "file": "D:\\Projects\\C++\\Raylib-Test\\src\\game.cpp",
-  "output": "CMakeFiles\\game.dir\\src\\game.cpp.obj"
+  "directory": "/home/archie/Dev/Raylib/build",
+  "command": "/usr/bin/c++ -DGAME_EXPORTS -Dgame_EXPORTS -I/home/archie/Dev/Raylib/raylib-linux/include -std=gnu++20 -fPIC -o CMakeFiles/game.dir/src/game.cpp.o -c /home/archie/Dev/Raylib/src/game.cpp",
+  "file": "/home/archie/Dev/Raylib/src/game.cpp",
+  "output": "CMakeFiles/game.dir/src/game.cpp.o"
+},
+{
+  "directory": "/home/archie/Dev/Raylib/build",
+  "command": "/usr/bin/c++ -I/home/archie/Dev/Raylib/raylib-linux/include -std=gnu++20 -o CMakeFiles/Raylib.dir/src/main.cpp.o -c /home/archie/Dev/Raylib/src/main.cpp",
+  "file": "/home/archie/Dev/Raylib/src/main.cpp",
+  "output": "CMakeFiles/Raylib.dir/src/main.cpp.o"
 }
 ]

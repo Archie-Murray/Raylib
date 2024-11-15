@@ -1,5 +1,6 @@
 #include "platform.hpp"
 #include "raylib.h"
+#include <dlfcn.h>
 #include <format>
 #include <iostream>
 #include <filesystem>
@@ -82,16 +83,16 @@ void DestroyLibraryFile() {
 }
 #else
 GameLib LoadGameLibrary(GameAPI* gameAPI) {
-    GameLib gameLib = (GameLib) dlopen("game.so");
+    GameLib gameLib = (GameLib) dlopen("libgame.so", RTLD_NOW);
     if (!gameLib) {
         // Handle error
         return gameLib;
     }
   
-    gameAPI->createGame = (CreateGameFunc)dlysm(gameLib, "CreateGame");
-    gameAPI->startGame = (StartGameFunc)dlysm(gameLib, "StartGame");
-    gameAPI->updateGame = (UpdateGameFunc)dlysm(gameLib, "UpdateGame");
-    gameAPI->destroyGame = (DestroyGameFunc)dlysm(gameLib, "DestroyGame");
+    gameAPI->createGame = (CreateGameFunc)dlsym(gameLib, "CreateGame");
+    gameAPI->startGame = (StartGameFunc)dlsym(gameLib, "StartGame");
+    gameAPI->updateGame = (UpdateGameFunc)dlsym(gameLib, "UpdateGame");
+    gameAPI->destroyGame = (DestroyGameFunc)dlsym(gameLib, "DestroyGame");
     if (!gameAPI->createGame || !gameAPI->updateGame || !gameAPI->destroyGame) {
       return nullptr;
     } else {
@@ -101,5 +102,15 @@ GameLib LoadGameLibrary(GameAPI* gameAPI) {
 
 void FreeGameLibrary(GameLib gameLib) {
     dlclose(gameLib);
+}
+
+
+void DestroyLibraryFile() {
+    TraceLog(LOG_INFO, std::format("Deleting file {}", currentFile).c_str());
+    try {
+        std::filesystem::remove(currentFile);
+    } catch (std::filesystem::filesystem_error &e) {
+        TraceLog(LOG_ERROR, e.what());
+    }
 }
 #endif
