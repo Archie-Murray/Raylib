@@ -28,4 +28,5 @@ struct GameAPI {
 };
 
 GameLib LoadGameLibrary(GameAPI *gameAPI);
-void FreeGameLibrary(void *gameLib);
+void FreeGameLibrary(GameLib gameLib);
+void DestroyLibraryFile();

@@ -1,3 +1,4 @@
+#pragma once
 #include "platform.hpp"
 #include "raylib.h"
 #include <filesystem>

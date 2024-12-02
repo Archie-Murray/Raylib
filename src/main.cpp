@@ -1,4 +1,4 @@
-#include "platform.cpp"
+#include "platform.hpp"
 #include "raylib.h"
 
 int main() {
