@@ -1,3 +1,9 @@
 build/
 .cache/
 lib/
+*.dll
+*.lib
+*.so
+*.ilk
+*.exe
+*.exp

@@ -25,13 +25,13 @@ void Game::Update() {
         (float)(IsKeyDown(KEY_D) - IsKeyDown(KEY_A)),
         (float)(IsKeyDown(KEY_S) - IsKeyDown(KEY_W))
     };
-    DrawText(TextFormat("Player Position: (%f, %f)", playerPos.x, playerPos.y), round(GetScreenWidth() * 0.8f), 10, 10, WHITE);
+    DrawText(TextFormat("Player Position: (%f, %f)", playerPos.x, playerPos.y), round(GetScreenWidth() * 0.8f), 10, 10, GREEN);
     input = Vector2Normalize(input);
     input = Vector2Scale(input, 175.0f * GetFrameTime());
     playerPos = Vector2Add(playerPos, input);
     // playerPos.x += input.x;
     // playerPos.y += input.y;
-    DrawRectanglePro({playerPos.x, playerPos.y, 40.0f, 40.0f}, {40, 40}, 0.0f, RED);
+    DrawCircleV({playerPos.x, playerPos.y}, 40.0f, GREEN);
     // DrawRectangle(100, 10, 100, 100, RED);
 }
 
