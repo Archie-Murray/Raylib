@@ -13,9 +13,7 @@ std::string FileTimeStamp() {
   SYSTEMTIME time;
   GetLocalTime(&time);
   char buffer[20];
-  snprintf(buffer, sizeof(buffer), "%04d-%02d-%02d_%02d-%02d-%02d", time.wYear,
-           time.wMonth, time.wDay, time.wHour, time.wMinute, time.wSecond);
-
+  snprintf(buffer, sizeof(buffer), "%04d-%02d-%02d_%02d-%02d-%02d", time.wYear,time.wMonth, time.wDay, time.wHour, time.wMinute, time.wSecond);
   return std::string(buffer);
 }
 void copyLib() {
@@ -101,7 +99,7 @@ void DestroyLibraryFile() {
 GameLib LoadGameLibrary(GameAPI *gameAPI) {
   copyLib();
   if (std::filesystem::exists(currentFile.c_str())) {
-      TraceLog(LOG_INFO, "Lib file exists!");
+    TraceLog(LOG_INFO, "Lib file exists!");
   }
   GameLib gameLib = (GameLib)dlopen(currentFile.c_str(), RTLD_NOW);
   if (!gameLib) {

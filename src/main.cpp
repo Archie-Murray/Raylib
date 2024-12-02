@@ -4,11 +4,11 @@
 int main() {
     GameAPI gameAPI = {};
     GameLib gameLib = LoadGameLibrary(&gameAPI);
-    if (gameLib == nullptr) {
+    if (!gameLib) {
         TraceLog(LOG_ERROR, "Could not load game API");
         return -1;
     }
-    Game *game = gameAPI.createGame();
+    Game* game = gameAPI.createGame();
     if (!game) {
         TraceLog(LOG_ERROR, "Could not create game!");
         FreeGameLibrary(gameLib);
