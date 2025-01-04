@@ -1,5 +1,6 @@
 #include "game.hpp"
 #include "raylib.h"
+#include "tower.hpp"
 #include "raymath.h"
 #include <cmath>
 
@@ -15,7 +16,14 @@ Game::~Game() {
 void Game::Start(int fps, int width, int height) {
     TraceLog(LOG_INFO, TextFormat("Screen Size at Game::Start(): (%f, %f)", width, height));
     playerPos = {width * 0.5f, height * 0.5f};
+    atlas = LoadTexture("Atlas.png");
+    if (atlas.width == 0) {
+        TraceLog(LOG_ERROR, "Could not find Atlas.png");
+    }
     SetTargetFPS(fps);
+    towers = std::vector<class Tower*>();
+    towers.push_back(new class Tower());
+    towers.back()->Init();
 }
 
 void Game::Update() {
@@ -29,6 +37,10 @@ void Game::Update() {
     input = Vector2Normalize(input);
     input = Vector2Scale(input, 175.0f * GetFrameTime());
     playerPos = Vector2Add(playerPos, input);
+    for (auto iterator = towers.begin(); iterator != towers.end(); iterator++) {
+        (*iterator)->Update();
+        (*iterator)->Render(this);
+    }
     // playerPos.x += input.x;
     // playerPos.y += input.y;
     DrawCircleV({playerPos.x, playerPos.y}, 40.0f, GREEN);

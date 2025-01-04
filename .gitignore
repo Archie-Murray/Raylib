@@ -7,3 +7,4 @@ lib/
 *.ilk
 *.exe
 *.exp
+compile_commands.json

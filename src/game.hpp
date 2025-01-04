@@ -2,8 +2,8 @@
 #define GAME_HPP
 
 #include "raylib.h"
+#include <vector>
 #define EXTERNAL extern "C"
-
 #ifdef _WIN32
   #ifdef GAME_EXPORTS
     #define GAME_API __declspec(dllexport)
@@ -14,9 +14,12 @@
   #define GAME_API
 #endif
 
+class Tower;
 EXTERNAL class GAME_API Game {
 public:
     Vector2 playerPos;
+    Texture2D atlas;
+    std::vector<class Tower*> towers;
 
     Game();
     ~Game();
